@@ -14,6 +14,7 @@ const store = {
     if (this.debug) console.log('generateNumbersAction triggered');
     const state = this.state;
     const count = state.howManyNumbers;
+    state.numbers.length = 0;
     for (let i = 0; i < count; i += 1) {
       state.numbers.push(createNumber({ assigned: false, value: i + 1 }));
     }
@@ -33,9 +34,13 @@ const store = {
     const state = this.state;
     state.screen = newValue;
   },
-  flipCardAction() {
+  flipCardAction(flipped) {
     const state = this.state;
-    state.cardFlipped = !state.cardFlipped;
+    if (flipped !== undefined) {
+      state.cardFlipped = flipped;
+    } else {
+      state.cardFlipped = !state.cardFlipped;
+    }
   },
   // generateNewPointerAction() {
   //   if (this.debug) console.log('generateNewPointerAction triggered');

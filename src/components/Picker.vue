@@ -1,17 +1,13 @@
 <template>
   <div class="picker">
-    <div class="card" v-bind:class="cardClass" v-on:click="getNewNumber">
-      <div v-if="sharedState.pointer" class="face front number">
-        <span>{{ sharedState.pointer.value }}</span>
+    <div class="card" v-bind:class="cardClass">
+      <div class="face front" v-on:click="getNewNumber">
+        <span v-if="sharedState.pointer || !done" class="next">Get the next number!</span>
+        <span v-else class="done">That's it!</span>
       </div>
-      <div v-else class="face front done">
-        <span>That's it!</span>
-      </div>
-      <div v-if="sharedState.pointer" class="face back number">
-        <span>{{ sharedState.pointer.value }}</span>
-      </div>
-      <div v-else class="face back done">
-        <span>That's it!</span>
+      <div class="face back" v-on:click="flipCard">
+        <span v-if="sharedState.pointer" class="number">{{ sharedState.pointer.value }}</span>
+        <span v-else class="done">That's it!</span>
       </div>
     </div>
     <span class="numbers-left">Numbers left: {{ unassignedCount }}</span>
@@ -29,6 +25,10 @@ export default {
   methods: {
     getNewNumber() {
       this.$root.getNewNumber();
+      this.$root.flipCard();
+    },
+    flipCard() {
+      this.$root.flipCard();
     },
   },
   computed: {
@@ -90,6 +90,7 @@ export default {
     font-family: 'Bungee', sans-serif;
     font-size: 4rem;
   }
+  .next,
   .done {
     font-family: 'Bungee', sans-serif;
     font-size: 1rem;

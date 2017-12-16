@@ -35,8 +35,8 @@ new Vue({
   methods: {
     generateNumbers() {
       store.generateNumbersAction();
-      console.log(this.numbers);
-      this.getNewNumber();
+      store.setPointerAction(null);
+      store.flipCardAction(false);
       this.setPage('picker');
     },
     getNewNumber() {
@@ -49,7 +49,6 @@ new Vue({
       } else {
         store.setPointerAction(null);
       }
-      store.flipCardAction();
     },
     setHowManyNumbers(val) {
       const value = val && val.trim();

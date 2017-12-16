@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <h1>Welcome!</h1>
-    <p>How many numbers would you like to assign?</p>
+    <p>How many numbers <br/>would you like to assign?</p>
   </div>
 </template>
 
@@ -22,10 +22,12 @@ h1 {
   /*font-family: 'Bungee', sans-serif;*/
   font-weight: bold;
   margin: 0 0 14px;
+  padding: 0 14px;
 }
 p {
   font-size: 1.2rem;
   padding: 0;
   margin: 0 0 14px;
+  padding: 0 14px;
 }
 </style>
